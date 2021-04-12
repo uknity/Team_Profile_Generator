@@ -1,9 +1,11 @@
-//function to ask additional questions
-function addQuestions(empPosition) {
-    if (empPosition === "engineer") {
-        
-    }
+const manager = [];
+
+function generateManHTML(manAnswers) {
+    console.log(manAnswers);
 }
 
+function generateHTML() {
 
-module.exports = ___;
+}
+
+module.exports = generateHTML;
