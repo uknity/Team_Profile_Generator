@@ -1,22 +1,16 @@
+const managerHTML = require('../lib/manager');
+const engineerHTML = require('../lib/engineer');
+const internHTML = require('../lib/intern');
 // generate the HTML pages
-const generateTeam = team => {
-    const generateManager = manager = {
-        return `${manager.getName()} etc etc`
-
-    }
-     // A method for a template to render manager info
-
-    // A method for a template to render engineer info
-
-    // A method for a template to render intern info
-
-const html = [];
-    html.push(team
-        .filter(employee => employee.getRole() === "Manager")
-        .map(manager => generateManager(manager))
-    );
-    return html.join("");
-}
+// const generateTeam = team => {
+    
+// const html = [];
+//     html.push(team
+//         .filter(employee => employee.getRole() === "Manager")
+//         .map(manager => generateManager(manager))
+//     );
+//     return html.join("");
+// }
 
 // We are exporting out an anonymous function
 module.exports = team => {
@@ -40,100 +34,10 @@ module.exports = team => {
       <main>
         <div class="container-fluid">
             <div class="row justify-content-center" >
-            ${someFunction(team)}    
-            <!-- manager -->
-                <div class="col-sm col-md-3" style="color: white">
-                    <div class="card">
-                        <div class="card-header bg-primary p-3">
-                          <h5 class="card-title p-2"><img src="assets\images\coffee-icon-png-3.png" width="30" height="30" alt="coffee icon" class="align-text-bottom">  Manager</h5>
-                          <h6 class="card-subtitle mb-2 p-2">position</h6>
-                        </div>
-                        <div class="card-body bg-light p-4">
-                            <ul class="list-group list-group-flush bg-white m-4">
-                                <li class="list-group-item my-2">Id: </li>
-                                <li class="list-group-item my-2">Email:  <a href="mailto:someone@yoursite.com" target="_blank" rel="noopener noreferrer">email</a></li>
-                                <li class="list-group-item my-2">Office Number: </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Engineer Card -->
-                <div class="col-sm col-md-3" style="color: white">
-                    <div class="card">
-                        <div class="card-header bg-primary p-3">
-                          <h5 class="card-title p-2"><img src="assets/images/glasses3.png" width="30" height="30" alt="glasses icon" class="align-text-bottom">  Engineer</h5>
-                          <h6 class="card-subtitle mb-2 p-2">position</h6>
-                        </div>
-                        <div class="card-body bg-light p-4">
-                            <ul class="list-group list-group-flush bg-white m-4">
-                                <li class="list-group-item my-2">Id: </li>
-                                <li class="list-group-item my-2">Email:  <a href="mailto:someone@yoursite.com" target="_blank" rel="noopener noreferrer">email</a></li>
-                                <li class="list-group-item my-2"><a href="#" class="card-link">GitHub Profile</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- intern card  -->
-                <div class="col-sm col-md-3" style="color: white">
-                    <div class="card">
-                        <div class="card-header bg-primary p-3">
-                          <h5 class="card-title p-2"><img src="assets/images/gradcapfin.png" width="30" height="30" alt="glasses icon" class="align-text-bottom">  intern</h5>
-                          <h6 class="card-subtitle mb-2 p-2">position</h6>
-                        </div>
-                        <div class="card-body bg-light p-4">
-                            <ul class="list-group list-group-flush bg-white m-4">
-                                <li class="list-group-item my-2">Id: </li>
-                                <li class="list-group-item my-2">Email:  <a href="mailto:someone@yoursite.com" target="_blank" rel="noopener noreferrer">email</a></li>
-                                <li class="list-group-item my-2">School:  </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm col-md-3" style="color: white">
-                    <div class="card">
-                        <div class="card-header bg-primary p-3">
-                          <h5 class="card-title p-2"><img src="assets/images/gradcapfin.png" width="30" height="30" alt="glasses icon" class="align-text-bottom">  intern</h5>
-                          <h6 class="card-subtitle mb-2 p-2">position</h6>
-                        </div>
-                        <div class="card-body bg-light p-4">
-                            <ul class="list-group list-group-flush bg-white m-4">
-                                <li class="list-group-item my-2">Id: </li>
-                                <li class="list-group-item my-2">Email:  <a href="mailto:someone@yoursite.com" target="_blank" rel="noopener noreferrer">email</a></li>
-                                <li class="list-group-item my-2">School:  </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm col-md-3" style="color: white">
-                <div class="card">
-                    <div class="card-header bg-primary p-3">
-                      <h5 class="card-title p-2"><img src="assets/images/gradcapfin.png" width="30" height="30" alt="glasses icon" class="align-text-bottom">  intern</h5>
-                      <h6 class="card-subtitle mb-2 p-2">position</h6>
-                    </div>
-                    <div class="card-body bg-light p-4">
-                        <ul class="list-group list-group-flush bg-white m-4">
-                            <li class="list-group-item my-2">Id: </li>
-                            <li class="list-group-item my-2">Email:  <a href="mailto:someone@yoursite.com" target="_blank" rel="noopener noreferrer">email</a></li>
-                            <li class="list-group-item my-2">School:  </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- <div class="row justify-content-center">
-                <div class="col-sm col-md-3 bg-primary m-2">
-                  One of 2 columns
-                </div>
-                <div class="col-sm col-md-3 bg-light m-2">
-                  One of 2 columns
-                </div>
-                
-            </div> -->
+            ${managerHTML}
+            ${engineerHTML}
+            ${internHTML}   
+            
         </div>
 
 
@@ -145,13 +49,3 @@ module.exports = team => {
 </html>
     `
 }
-
-module.exports = team => {
-    HTML TEMPLATE
-        WHERE YOU WANT TO SHOW THE USER CONTENT
-      <div>
-        ${generateTeam(team)}
-      </div>
-  }
-  
-  
