@@ -1,5 +1,8 @@
 //packages needed for operation
 const inquirer = require("inquirer");
+//const manager = require("./lib/manager");
+//const engineer = require("./lib/engineer");
+//const intern = require("./lib/intern");
 // const path = require("path");
 // const fs = require("fs");
 // const generateHTML = require("./utils/generateHTML");
@@ -9,6 +12,9 @@ const inquirer = require("inquirer");
 // const pageTemplate = require("./src/page-template")
 
 const employeeArray = [];
+const managerArray = [];
+const engineerArray = [];
+const internArray = [];
 
 // array of questions for managerial identification
 const managerQuestions = [
@@ -129,14 +135,12 @@ function internQuestions() {
     .then((internAnswers) => {
         internAnswers.type = "intern";
         employeeArray.push(internAnswers);
-        console.log(employeeArray)
+        internArray.push(internAnswers);
+        console.log(internArray);
         if (internAnswers.addMore === "yes") {
             
             employeeTypeFunc();  
         } 
-        // else if (internAnswers.addMore === "no") {
-            
-        // }    
     })
 }
 
@@ -144,15 +148,13 @@ function engineerQuestions() {
     inquirer.prompt(engineerQues)
     .then((engAnswers) => {
         engAnswers.type = "engineer";
-        employeeArray.push(engAnswers)
-        console.log(employeeArray);
+        employeeArray.push(engAnswers);
+        engineerArray.push(engAnswers);
+        console.log(engineerArray);
         if (engAnswers.addMore === "yes") {
             employeeTypeFunc();  
 
-        } 
-        // else if (engAnswers.addMore === "no") {
-            
-        // }
+        }
     })
 }
 
@@ -162,8 +164,9 @@ function managerQues() {
     
     .then((manAnswers) => {
         manAnswers.type = "manager";
-        employeeArray.push(manAnswers)
-        console.log(employeeArray);
+        employeeArray.push(manAnswers);
+        managerArray.push(manAnswers);
+        console.log(managerArray);
         if (manAnswers.empPosition === "engineer") {
             engineerQuestions();
                 
