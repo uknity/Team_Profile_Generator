@@ -1,6 +1,9 @@
 const managerHTML = require('../lib/manager');
 const engineerHTML = require('../lib/engineer');
 const internHTML = require('../lib/intern');
+
+console.log(managerHTML);
+
 // generate the HTML pages
 // const generateTeam = team => {
     
@@ -13,8 +16,8 @@ const internHTML = require('../lib/intern');
 // }
 
 // We are exporting out an anonymous function
-module.exports = team => {
-    return `
+function pageContent()  
+{return`
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,6 +49,6 @@ module.exports = team => {
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
       <script src="index.js"></script>
 </body>
-</html>
-    `
-}
+</html> `};
+
+module.exports = pageContent();

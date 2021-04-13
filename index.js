@@ -1,21 +1,25 @@
 //packages needed for operation
 const inquirer = require("inquirer");
+const pageTemplate = require("./src/page-template");
 //const manager = require("./lib/manager");
 //const engineer = require("./lib/engineer");
 //const intern = require("./lib/intern");
+
 // const path = require("path");
 // const fs = require("fs");
-// const generateHTML = require("./utils/generateHTML");
-// const generateManHTML = require("./utils/generateHTML")
 // const OUTPUT_DIR = path.resolve(__dirname, "dist")
 // const outputPath = path.join(OUTPUT_DIR, "team.html");
-// const pageTemplate = require("./src/page-template")
+
 
 const employeeArray = [];
 const managerArray = [];
 const engineerArray = [];
 const internArray = [];
 
+function createManagerArray(manAnswers) {
+    managerArray.push(manAnswers);
+    console.log(managerArray);
+};
 // array of questions for managerial identification
 const managerQuestions = [
   {
@@ -140,7 +144,12 @@ function internQuestions() {
         if (internAnswers.addMore === "yes") {
             
             employeeTypeFunc();  
-        } 
+        } else {
+            console.log("done with questions");
+            // modules.exports = iDoReturnAnArray();
+            console.log(managerArray);
+            buildTeam();
+        }
     })
 }
 
@@ -154,8 +163,14 @@ function engineerQuestions() {
         if (engAnswers.addMore === "yes") {
             employeeTypeFunc();  
 
+        } else {
+            console.log("done with questions");
+            // modules.exports = iDoReturnAnArray();
+            console.log(managerArray);
+            buildTeam();
         }
-    })
+    }) 
+    
 }
 
 //function to begin manager questioning
@@ -164,6 +179,7 @@ function managerQues() {
     
     .then((manAnswers) => {
         manAnswers.type = "manager";
+        createManagerArray(manAnswers);
         employeeArray.push(manAnswers);
         managerArray.push(manAnswers);
         console.log(managerArray);
@@ -179,25 +195,33 @@ function managerQues() {
     
 }
 
+function buildTeam() {
+    // Create the output directory if the output path doesn't exist
+//     if (!fs.existsSync(OUTPUT_DIR)) {
+//       fs.mkdirSync(OUTPUT_DIR)
+//     }
+//     // 
+//     fs.writeFileSync("./dist/index.html", pageTemplate, (err) =>
+//         err ? console.log(err) : console.log("Successfully created index.html")
+//         );
+//   }
+console.log(pageTemplate);
+ }
+  
 // function to initialize app - calls managerQuestions function
 function runApp() {
     managerQues()
-
-    // function buildTeam() {
-    //   // Create the output directory if the output path doesn't exist
-    //   if (!fs.existsSync(OUTPUT_DIR)) {
-    //     fs.mkdirSync(OUTPUT_DIR)
-    //   }
-    //   fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
-    // }
-  }
+    
+}
   // Function call to initialize app
-  runApp();
+runApp();
 
-
-
+// exports.managerArray = managerArray;
+exports.managerArray = managerArray;
     
-    
+// module.exports = {managerArray};
+//   const engineerArray = [];
+//   const internArray = [];
 
     
 
@@ -209,5 +233,9 @@ function runApp() {
     // });
 
 
+// myArray.js
 
+// modules.exports = iDoReturnAnArray();
 
+  // main.js 
+  
