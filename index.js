@@ -4,11 +4,12 @@ const pageTemplate = require("./src/page-template");
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
+const Employee = require("./lib/employee");
 
-// const path = require("path");
-// const fs = require("fs");
-// const OUTPUT_DIR = path.resolve(__dirname, "dist")
-// const outputPath = path.join(OUTPUT_DIR, "team.html");
+const path = require("path");
+const fs = require("fs");
+const OUTPUT_DIR = path.resolve(__dirname, "dist")
+const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 
 const employeeArray = [];
@@ -37,7 +38,7 @@ const managerQuestions = [
   },
 
   {
-    type: "input",
+    type: "number",
     name: "officeNum",
     message: "What is your team manager's office number?",
   },
@@ -136,9 +137,14 @@ function internQuestions() {
         internAnswers.type = "intern";
         employeeArray.push(internAnswers);
         internArray.push(internAnswers);
+        console.log(internArray);
         if (internAnswers.addMore === "yes") {
+            
             employeeTypeFunc();  
         } else {
+            console.log("done with questions");
+            // modules.exports = iDoReturnAnArray();
+            console.log(managerArray);
             buildTeam();
         }
     })
@@ -150,13 +156,18 @@ function engineerQuestions() {
         engAnswers.type = "engineer";
         employeeArray.push(engAnswers);
         engineerArray.push(engAnswers);
+        console.log(engineerArray);
         if (engAnswers.addMore === "yes") {
             employeeTypeFunc();  
 
         } else {
+            console.log("done with questions");
+            // modules.exports = iDoReturnAnArray();
+            console.log(managerArray);
             buildTeam();
         }
     }) 
+    
 }
 
 //function to begin manager questioning
@@ -165,53 +176,57 @@ function managerQues() {
     
     .then((manAnswers) => {
         manAnswers.type = "manager";
+        // createManagerArray(manAnswers);
         employeeArray.push(manAnswers);
         managerArray.push(manAnswers);
+        console.log(managerArray);
         if (manAnswers.empPosition === "engineer") {
             engineerQuestions();
+                
         } else if (manAnswers.empPosition === "intern") {
+        
             internQuestions();
-        }      
-    })   
+        }
+            
+    })
+    
 }
 
 function buildTeam() {
  
     const managerAr = [];
 
-    for (let i = 0; i < managerArray.length; i++) {
-        managerAr.push(new Manager(managerArray[i].name, managerArray[i].id, managerArray[i].email, managerArray[i].officeNum, ));
-    };
+    for (let i = 0; i< managerArray.length; i++) {
+        managerAr.push(new Manager(managerArray[i].name, managerArray[i].id, managerArray[i].email, managerArray[i].officeNum));
+    }
 
-    console.log(pageTemplate(managerAr));
+    // console.log(pageTemplate(managerAr));
 
     const engineerAr = [];
 
-    for (let i = 0; i < engineerArray.length; i++) {
+    for (let i = 0; i< engineerArray.length; i++) {
         engineerAr.push(new Engineer(engineerArray[i].name, engineerArray[i].id, engineerArray[i].email, engineerArray[i].github))
     }
 
-    console.log(pageTemplate(engineerAr));
+    // console.log(pageTemplate(engineerAr));
 
     const internAr = [];
 
-    for (let i = 0; i < internArray.length; i++) {
+    for (let i = 0; i< internArray.length; i++) {
         internAr.push(new Intern(internArray[i].name, internArray[i].id, internArray[i].email, internArray[i].school))
     }
 
-    console.log(pageTemplate(internAr));
-       // Create the output directory if the output path doesn't exist
-//     if (!fs.existsSync(OUTPUT_DIR)) {
-//       fs.mkdirSync(OUTPUT_DIR)
-//     }
-//     // 
-//     fs.writeFileSync("./dist/index.html", pageTemplate, (err) =>
-//         err ? console.log(err) : console.log("Successfully created index.html")
-//         );
-//   }
-
-}
-
+    var pt = pageTemplate(managerAr, engineerAr, internAr);
+    console.log(pt);
+    //    Create the output directory if the output path doesn't exist
+    if (!fs.existsSync(OUTPUT_DIR)) {
+      fs.mkdirSync(OUTPUT_DIR)
+    }
+    // 
+    fs.writeFileSync(outputPath, pt, (err) =>
+        err ? console.log(err) : console.log("Successfully created team.html")
+        );
+  }
 
 
 // function to initialize app - calls managerQuestions function
@@ -227,11 +242,5 @@ exports.managerArray = managerArray;
 exports.engineerArray = engineerArray;
 exports.internArray = internArray;
     
-
-    //   // function writeToFile(fileName, data) {}
-    //   fs.writeFile("employeeDirectory.html", htmlContent, (err) =>
-    //     err ? console.log(err) : console.log("Successfully created employeeDirectory.html!")
-    //   );
-    // });
 
   

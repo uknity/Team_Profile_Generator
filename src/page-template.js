@@ -1,84 +1,86 @@
-
-function generateManagerHTML(managerArray){
-
+function generateManagerHTML(managerArray) {
   let managerHTML = "";
 
   for (mgr in managerArray) {
     const manager = managerArray[mgr];
-    managerHTML += `  <div class="card employee-card">
-    <div class="card-header">
-        <h2 class="card-title">${manager.getName()}</h2>
-        <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${manager.getRole()}</h3>
-    </div>
-    <div class="card-body">
-        <ul class="list-group">
-            <li class="list-group-item">ID: ${manager.getId()}</li>
-            <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
-            <li class="list-group-item">Office number: 53</li>
-        </ul>
-    </div>
-</div>`
+    managerHTML += `
+    <div class="col-sm col-md-3" style="color: white">
+      <div class="card m-4">
+          <div class="card-header bg-primary p-3">
+            <h5 class="card-title p-2"><i class="fas fa-mug-hot mr-2"></i>${manager.getName()}</h5>
+            <h6 class="card-subtitle mb-2 p-2">${manager.getRole()}</h6>
+          </div>
+          <div class="card-body bg-light p-4">
+              <ul class="list-group list-group-flush bg-white m-4">
+                  <li class="list-group-item my-2">Id: ${manager.getId()}</li>
+                  <li class="list-group-item my-2">Email:  <a href="${manager.getEmail()}" target="_blank" rel="noopener noreferrer">${manager.getEmail()}</a></li>
+                  <li class="list-group-item my-2">Office Number: ${manager.getOfficeNum()}</li>
+              </ul>
+          </div>
+        </div>      
+      </div>`;
   }
 
-  return managerHTML
+  return managerHTML;
 }
 
-function generateEngineerHTML(engineerArray){
-
+function generateEngineerHTML(engineerArray) {
   let engineerHTML = "";
 
   for (engin in engineerArray) {
     const engineer = engineerArray[engin];
-    engineerHTML += `<div class="card employee-card">
-    <div class="card-header">
-        <h2 class="card-title">${engineer.getName()}</h2>
-        <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${engineer.getRole()}</h3>
+    engineerHTML +=  
+  `<div class="col-sm col-md-3" style="color: white">
+    <div class="card m-4">
+        <div class="card-header bg-primary p-3">
+            <h5 class="card-title p-2"><i class="fas fa-glasses mr-2"></i>${engineer.getName()}</h5>
+            <h6 class="card-subtitle mb-2 p-2">${engineer.getRole()}</h6>
+        </div>
+        <div class="card-body bg-light p-4">
+            <ul class="list-group list-group-flush bg-white m-4">
+                <li class="list-group-item my-2">Id: ${engineer.getId()}</li>
+                <li class="list-group-item my-2">Email: <a href="mailto:${engineer.getEmail()}"
+                        target="_blank" rel="noopener noreferrer">${engineer.getEmail()}</a></li>
+                <li class="list-group-item my-2">Github: <a href="${engineer.getGitHub()}"
+                        target="_blank" class="card-link">${engineer.getGitHub()}</a></li>
+            </ul>
+        </div>
     </div>
-    <div class="card-body">
-        <ul class="list-group">
-            <li class="list-group-item">ID: ${engineer.getId()}</li>
-            <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
-            <li class="list-group-item">GitHub Profile: <a href="${engineer.getGitHub()}" target="_blank" class="card-link">${engineer.getGitHub()}</a></li>
-        </ul>
-    </div>
-</div>`
+</div>`;
   }
 
-  return engineerHTML
+  return engineerHTML;
 }
 
-function generateInternHTML(internArray){
-
+function generateInternHTML(internArray) {
   let internHTML = "";
 
   for (int in internArray) {
     const intern = internArray[int];
-    internHTML += `  <div class="card employee-card">
-    <div class="card-header">
-        <h2 class="card-title">${intern.getName()}</h2>
-        <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${intern.getRole()}</h3>
-    </div>
-    <div class="card-body">
-        <ul class="list-group">
-            <li class="list-group-item">ID: ${intern.getId()}</li>
-            <li class="list-group-item">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
-            <li class="list-group-item">School: ${intern.getSchool()}</li>
-        </ul>
-    </div>
-</div>`
+    internHTML += 
+  `<div class="col-sm col-md-3" style="color: white">
+  <div class="card m-4">
+      <div class="card-header bg-primary p-3">
+          <h5 class="card-title p-2"><i class="fas fa-graduation-cap mr-2"></i>${intern.getName()}</h5>
+          <h6 class="card-subtitle mb-2 p-2">${intern.getRole()}</h6>
+      </div>
+      <div class="card-body bg-light p-4">
+          <ul class="list-group list-group-flush bg-white m-4">
+              <li class="list-group-item my-2">Id: ${intern.getId()}</li>
+              <li class="list-group-item my-2">Email: <a href="mailto:${intern.getEmail()}"
+                      target="_blank" rel="noopener noreferrer">${intern.getEmail()}</a></li>
+              <li class="list-group-item my-2">School: ${intern.getSchool()}</li>
+          </ul>
+      </div>
+  </div>
+</div>`;
   }
 
-  return internHTML
+  return internHTML;
 }
 
-const cards = function (managerArray, engineerArray, internArray) {
-  return `${generateManagerHTML(managerArray)}  
-  ${generateEngineerHTML(engineerArray)}  
-  ${generateInternHTML(internArray)}`
-}
-
-function pageContent(cards)  
-{return`
+function pageContent(managerArray, engineerArray, internArray) {
+  return `
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,21 +96,22 @@ function pageContent(cards)
           <h1 class="display-1" style="color: white">My Team</h1>
         </div>
       </nav>
-      <!-- style="margin-left: 11rem; margin-right: 11rem;" -->
+      
       <main>
-        <div class="container-fluid">
+        <div class="container-fluid px-5">
             <div class="row justify-content-center" >
-            ${cards()}
+            ${generateManagerHTML(managerArray)}  
+            ${generateEngineerHTML(engineerArray)}  
+            ${generateInternHTML(internArray)}  
  
             
         </div>
-
-
       </main>
-
+      <script src="https://kit.fontawesome.com/8b01529eae.js" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
       <script src="index.js"></script>
 </body>
-</html> `};
+</html> `;
+}
 
 module.exports = pageContent;
