@@ -1,9 +1,9 @@
 //packages needed for operation
 const inquirer = require("inquirer");
 const pageTemplate = require("./src/page-template");
-//const manager = require("./lib/manager");
-//const engineer = require("./lib/engineer");
-//const intern = require("./lib/intern");
+const Manager = require("./lib/manager");
+const Engineer = require("./lib/engineer");
+const Intern = require("./lib/intern");
 
 // const path = require("path");
 // const fs = require("fs");
@@ -16,11 +16,7 @@ const managerArray = [];
 const engineerArray = [];
 const internArray = [];
 
-function createManagerArray(manAnswers) {
-    managerArray.push(manAnswers);
-    console.log(managerArray);
-};
-// array of questions for managerial identification
+
 const managerQuestions = [
   {
     type: "input",
@@ -179,7 +175,7 @@ function managerQues() {
     
     .then((manAnswers) => {
         manAnswers.type = "manager";
-        createManagerArray(manAnswers);
+        // createManagerArray(manAnswers);
         employeeArray.push(manAnswers);
         managerArray.push(manAnswers);
         console.log(managerArray);
@@ -196,7 +192,31 @@ function managerQues() {
 }
 
 function buildTeam() {
-    // Create the output directory if the output path doesn't exist
+ 
+    const managerAr = [];
+
+    for (let i = 0; i< managerArray.length; i++) {
+        managerAr.push(new Manager(managerArray[i].name, managerArray[i].id, managerArray[i].email, managerArray[i].officeNum));
+    }
+
+    console.log(pageTemplate(managerAr));
+
+    const engineerAr = [];
+
+    for (let i = 0; i< engineerArray.length; i++) {
+        engineerAr.push(new Engineer(engineerArray[i].name, engineerArray[i].id, engineerArray[i].email, engineerArray[i].github))
+    }
+
+    console.log(pageTemplate(engineerAr));
+
+    const internAr = [];
+
+    for (let i = 0; i< internArray.length; i++) {
+        internAr.push(new Intern(internArray[i].name, internArray[i].id, internArray[i].email, internArray[i].school))
+    }
+
+    console.log(pageTemplate(internAr));
+       // Create the output directory if the output path doesn't exist
 //     if (!fs.existsSync(OUTPUT_DIR)) {
 //       fs.mkdirSync(OUTPUT_DIR)
 //     }
@@ -205,9 +225,11 @@ function buildTeam() {
 //         err ? console.log(err) : console.log("Successfully created index.html")
 //         );
 //   }
-console.log(pageTemplate);
- }
-  
+
+}
+
+
+
 // function to initialize app - calls managerQuestions function
 function runApp() {
     managerQues()
@@ -218,24 +240,14 @@ runApp();
 
 // exports.managerArray = managerArray;
 exports.managerArray = managerArray;
-    
-// module.exports = {managerArray};
-//   const engineerArray = [];
-//   const internArray = [];
-
+exports.engineerArray = engineerArray;
+exports.internArray = internArray;
     
 
-      
     //   // function writeToFile(fileName, data) {}
     //   fs.writeFile("employeeDirectory.html", htmlContent, (err) =>
     //     err ? console.log(err) : console.log("Successfully created employeeDirectory.html!")
     //   );
     // });
 
-
-// myArray.js
-
-// modules.exports = iDoReturnAnArray();
-
-  // main.js 
   
