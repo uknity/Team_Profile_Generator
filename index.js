@@ -37,7 +37,7 @@ const managerQuestions = [
   },
 
   {
-    type: "number",
+    type: "input",
     name: "officeNum",
     message: "What is your team manager's office number?",
   },
@@ -136,14 +136,9 @@ function internQuestions() {
         internAnswers.type = "intern";
         employeeArray.push(internAnswers);
         internArray.push(internAnswers);
-        console.log(internArray);
         if (internAnswers.addMore === "yes") {
-            
             employeeTypeFunc();  
         } else {
-            console.log("done with questions");
-            // modules.exports = iDoReturnAnArray();
-            console.log(managerArray);
             buildTeam();
         }
     })
@@ -155,18 +150,13 @@ function engineerQuestions() {
         engAnswers.type = "engineer";
         employeeArray.push(engAnswers);
         engineerArray.push(engAnswers);
-        console.log(engineerArray);
         if (engAnswers.addMore === "yes") {
             employeeTypeFunc();  
 
         } else {
-            console.log("done with questions");
-            // modules.exports = iDoReturnAnArray();
-            console.log(managerArray);
             buildTeam();
         }
     }) 
-    
 }
 
 //function to begin manager questioning
@@ -175,35 +165,29 @@ function managerQues() {
     
     .then((manAnswers) => {
         manAnswers.type = "manager";
-        // createManagerArray(manAnswers);
         employeeArray.push(manAnswers);
         managerArray.push(manAnswers);
-        console.log(managerArray);
         if (manAnswers.empPosition === "engineer") {
             engineerQuestions();
-                
         } else if (manAnswers.empPosition === "intern") {
-        
             internQuestions();
-        }
-            
-    })
-    
+        }      
+    })   
 }
 
 function buildTeam() {
  
     const managerAr = [];
 
-    for (let i = 0; i< managerArray.length; i++) {
-        managerAr.push(new Manager(managerArray[i].name, managerArray[i].id, managerArray[i].email, managerArray[i].officeNum));
-    }
+    for (let i = 0; i < managerArray.length; i++) {
+        managerAr.push(new Manager(managerArray[i].name, managerArray[i].id, managerArray[i].email, managerArray[i].officeNum, ));
+    };
 
     console.log(pageTemplate(managerAr));
 
     const engineerAr = [];
 
-    for (let i = 0; i< engineerArray.length; i++) {
+    for (let i = 0; i < engineerArray.length; i++) {
         engineerAr.push(new Engineer(engineerArray[i].name, engineerArray[i].id, engineerArray[i].email, engineerArray[i].github))
     }
 
@@ -211,7 +195,7 @@ function buildTeam() {
 
     const internAr = [];
 
-    for (let i = 0; i< internArray.length; i++) {
+    for (let i = 0; i < internArray.length; i++) {
         internAr.push(new Intern(internArray[i].name, internArray[i].id, internArray[i].email, internArray[i].school))
     }
 

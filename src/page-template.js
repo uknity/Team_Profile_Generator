@@ -14,7 +14,7 @@ function generateManagerHTML(managerArray){
         <ul class="list-group">
             <li class="list-group-item">ID: ${manager.getId()}</li>
             <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
-            <li class="list-group-item">Office number: ${manager.getOfficeNum()}</li>
+            <li class="list-group-item">Office number: 53</li>
         </ul>
     </div>
 </div>`
@@ -29,7 +29,7 @@ function generateEngineerHTML(engineerArray){
 
   for (engin in engineerArray) {
     const engineer = engineerArray[engin];
-    engineerHTML += `  <div class="card employee-card">
+    engineerHTML += `<div class="card employee-card">
     <div class="card-header">
         <h2 class="card-title">${engineer.getName()}</h2>
         <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${engineer.getRole()}</h3>
@@ -38,7 +38,7 @@ function generateEngineerHTML(engineerArray){
         <ul class="list-group">
             <li class="list-group-item">ID: ${engineer.getId()}</li>
             <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
-            <li class="list-group-item">GitHub Profile: <a href="${engineer.getOfficeNum()}" target="_blank" class="card-link">${engineer.getOfficeNum()}</a></li>
+            <li class="list-group-item">GitHub Profile: <a href="${engineer.getGitHub()}" target="_blank" class="card-link">${engineer.getGitHub()}</a></li>
         </ul>
     </div>
 </div>`
@@ -71,7 +71,13 @@ function generateInternHTML(internArray){
   return internHTML
 }
 
-function pageContent(managerArray, engineerArray, internArray)  
+const cards = function (managerArray, engineerArray, internArray) {
+  return `${generateManagerHTML(managerArray)}  
+  ${generateEngineerHTML(engineerArray)}  
+  ${generateInternHTML(internArray)}`
+}
+
+function pageContent(cards)  
 {return`
     <!DOCTYPE html>
 <html lang="en">
@@ -92,9 +98,7 @@ function pageContent(managerArray, engineerArray, internArray)
       <main>
         <div class="container-fluid">
             <div class="row justify-content-center" >
-            ${generateManagerHTML(managerArray)}  
-            ${generateEngineerHTML(engineerArray)}  
-            ${generateInternHTML(internArray)}  
+            ${cards()}
  
             
         </div>
