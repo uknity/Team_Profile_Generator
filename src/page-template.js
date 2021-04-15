@@ -13,7 +13,7 @@ function generateManagerHTML(managerArray) {
           <div class="card-body bg-light p-4">
               <ul class="list-group list-group-flush bg-white m-4">
                   <li class="list-group-item my-2">Id: ${manager.getId()}</li>
-                  <li class="list-group-item my-2">Email:  <a href="${manager.getEmail()}" target="_blank" rel="noopener noreferrer">${manager.getEmail()}</a></li>
+                  <li class="list-group-item my-2">Email:  <a href="mailto:${manager.getEmail()}" target="_blank" rel="noopener noreferrer">${manager.getEmail()}</a></li>
                   <li class="list-group-item my-2">Office Number: ${manager.getOfficeNum()}</li>
               </ul>
           </div>
